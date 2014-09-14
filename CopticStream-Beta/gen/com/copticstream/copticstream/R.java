@@ -41,17 +41,20 @@ public final class R {
         public static final int scrubber_track_holo_dark=0x7f020010;
     }
     public static final class id {
-        public static final int action_settings=0x7f090006;
-        public static final int mediacontroller_file_name=0x7f090005;
-        public static final int mediacontroller_play_pause=0x7f090001;
-        public static final int mediacontroller_seekbar=0x7f090004;
-        public static final int mediacontroller_time_current=0x7f090002;
-        public static final int mediacontroller_time_total=0x7f090003;
-        public static final int surface=0x7f090000;
+        public static final int action_settings=0x7f090008;
+        public static final int button1=0x7f090001;
+        public static final int mediacontroller_file_name=0x7f090006;
+        public static final int mediacontroller_play_pause=0x7f090002;
+        public static final int mediacontroller_seekbar=0x7f090005;
+        public static final int mediacontroller_time_current=0x7f090003;
+        public static final int mediacontroller_time_total=0x7f090004;
+        public static final int surface=0x7f090007;
+        public static final int textView1=0x7f090000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int mediacontroller=0x7f030001;
+        public static final int mediaplayer_video=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f080000;
