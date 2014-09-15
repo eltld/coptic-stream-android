@@ -1,5 +1,6 @@
 package com.copticstream.copticstream;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,6 +23,35 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		JsonArrayRequest jsArrayRequest = new JsonArrayRequest("http://copticstream.com/streams.asmx/StreamListByType",
+				new Response.Listener<JSONArray>() {
+
+			@Override
+			public void onResponse(JSONArray response) {
+				try {
+					for(int i =0;i<response.length();i++){
+						JSONObject object = response.getJSONObject(i);
+						
+						Log.i("Json",object.getString("streamName"));
+						
+					}
+
+
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}, new Response.ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		
 		JsonObjectRequest jsObjRequest = new JsonObjectRequest(
 				Request.Method.GET,
 				"http://copticstream.com/streams.asmx/HelloWorld", null,
@@ -45,9 +75,10 @@ public class MainActivity extends Activity {
 
 					}
 				});
-
+		
 		// Access the RequestQueue through your singleton class.
 		MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
+		MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
 		
 	}
 	
