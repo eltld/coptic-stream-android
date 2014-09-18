@@ -1,5 +1,7 @@
 package com.copticstream.copticstream;
 
+import java.util.regex.Pattern;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,10 +12,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 
 public class MainActivity extends Activity {
@@ -22,6 +29,20 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		Pattern emailPattern = Patterns.EMAIL_ADDRESS; 
+		Account[] accounts = AccountManager.get(getBaseContext()).getAccounts();
+		for (Account account : accounts) {
+		    if (emailPattern.matcher(account.name).matches()) {
+		        Log.i("Email", account.name);
+		    }
+		}
+		
+		String android_id = Secure.getString(getBaseContext().getContentResolver(),
+                Secure.ANDROID_ID); 
+	
+		Log.i("Device ID : ", android_id);
+
 
 		JsonArrayRequest jsArrayRequest = new JsonArrayRequest("http://copticstream.com/streams.asmx/StreamListByType",
 				new Response.Listener<JSONArray>() {
@@ -31,6 +52,7 @@ public class MainActivity extends Activity {
 				try {
 					for(int i =0;i<response.length();i++){
 						JSONObject object = response.getJSONObject(i);
+						
 						
 						Log.i("Json",object.getString("streamName"));
 						
