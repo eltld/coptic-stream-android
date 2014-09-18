@@ -1,115 +1,94 @@
 package com.copticstream.copticstream;
 
-import java.util.regex.Pattern;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.app.Activity;
-import android.content.Intent;
-import android.location.LocationManager;
+import android.app.ActionBar.Tab;
 import android.os.Bundle;
-import android.provider.Settings.Secure;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.util.Patterns;
-import android.view.View;
+import android.view.ViewParent;
+import android.widget.TextView;
+import android.app.FragmentTransaction;
+import android.app.ActionBar;
 
-public class MainActivity extends Activity {
 
+
+public class MainActivity extends FragmentActivity implements
+ActionBar.TabListener  {
+
+	private ViewPager viewPager;
+    private TabsPagerAdapter mAdapter;
+    private ActionBar actionBar;
+    // Tab titles
+    private String[] tabs = { "Top Rated", "Games", "Movies" };
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        actionBar = getActionBar();
+        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+ 
+        viewPager.setAdapter(mAdapter);
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);        
+ 
+        // Adding Tabs
+        for (String tab_name : tabs) {
+            actionBar.addTab(actionBar.newTab().setText(tab_name)
+                    .setTabListener(this));
+        }
+        
+       viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 		
-		Pattern emailPattern = Patterns.EMAIL_ADDRESS; 
-		Account[] accounts = AccountManager.get(getBaseContext()).getAccounts();
-		for (Account account : accounts) {
-		    if (emailPattern.matcher(account.name).matches()) {
-		        Log.i("Email", account.name);
-		    }
+		@Override
+		public void onPageSelected(int position) {
+			// TODO Auto-generated method stub
+			actionBar.setSelectedNavigationItem(position);
 		}
 		
-		String android_id = Secure.getString(getBaseContext().getContentResolver(),
-                Secure.ANDROID_ID); 
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void onPageScrollStateChanged(int arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	});
+
+
+       
+       
 	
-		Log.i("Device ID : ", android_id);
+	}
 
-
-		JsonArrayRequest jsArrayRequest = new JsonArrayRequest("http://copticstream.com/streams.asmx/StreamListByType",
-				new Response.Listener<JSONArray>() {
-
-			@Override
-			public void onResponse(JSONArray response) {
-				try {
-					for(int i =0;i<response.length();i++){
-						JSONObject object = response.getJSONObject(i);
-						
-						
-						Log.i("Json",object.getString("streamName"));
-						
-					}
-
-
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-		}, new Response.ErrorListener() {
-
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
 		
-		JsonObjectRequest jsObjRequest = new JsonObjectRequest(
-				Request.Method.GET,
-				"http://copticstream.com/streams.asmx/HelloWorld", null,
-				new Response.Listener<JSONObject>() {
-
-					@Override
-					public void onResponse(JSONObject response) {
-						try {
-							Log.i("Response: ", response.getString("Message"));
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-
-				}, new Response.ErrorListener() {
-
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						// TODO Auto-generated method stub
-
-					}
-				});
+		Log.i("Tab", tab.toString());
 		
-		// Access the RequestQueue through your singleton class.
-		MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
-		MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+		
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
 		
 	}
 	
-	public void playVideo(View view) {
-		Intent intent = new Intent(this,MediaPlayerVideo.class);
-		intent.putExtra("streamURL", "rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/aljazeera_eng_high");
-		intent.putExtra("stream", 5);
-		startActivity(intent);
-		
-	}
 
 }
