@@ -22,23 +22,25 @@ public final class R {
         public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int mediacontroller_bg=0x7f020001;
-        public static final int mediacontroller_pause01=0x7f020002;
-        public static final int mediacontroller_pause02=0x7f020003;
-        public static final int mediacontroller_pause_button=0x7f020004;
-        public static final int mediacontroller_play01=0x7f020005;
-        public static final int mediacontroller_play02=0x7f020006;
-        public static final int mediacontroller_play_button=0x7f020007;
-        public static final int scrubber_control_disabled_holo=0x7f020008;
-        public static final int scrubber_control_focused_holo=0x7f020009;
-        public static final int scrubber_control_normal_holo=0x7f02000a;
-        public static final int scrubber_control_pressed_holo=0x7f02000b;
-        public static final int scrubber_control_selector_holo=0x7f02000c;
-        public static final int scrubber_primary_holo=0x7f02000d;
-        public static final int scrubber_progress_horizontal_holo_dark=0x7f02000e;
-        public static final int scrubber_secondary_holo=0x7f02000f;
-        public static final int scrubber_track_holo_dark=0x7f020010;
+        public static final int film_icon=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int mediacontroller_bg=0x7f020002;
+        public static final int mediacontroller_pause01=0x7f020003;
+        public static final int mediacontroller_pause02=0x7f020004;
+        public static final int mediacontroller_pause_button=0x7f020005;
+        public static final int mediacontroller_play01=0x7f020006;
+        public static final int mediacontroller_play02=0x7f020007;
+        public static final int mediacontroller_play_button=0x7f020008;
+        public static final int scrubber_control_disabled_holo=0x7f020009;
+        public static final int scrubber_control_focused_holo=0x7f02000a;
+        public static final int scrubber_control_normal_holo=0x7f02000b;
+        public static final int scrubber_control_pressed_holo=0x7f02000c;
+        public static final int scrubber_control_selector_holo=0x7f02000d;
+        public static final int scrubber_primary_holo=0x7f02000e;
+        public static final int scrubber_progress_horizontal_holo_dark=0x7f02000f;
+        public static final int scrubber_secondary_holo=0x7f020010;
+        public static final int scrubber_track_holo_dark=0x7f020011;
+        public static final int video_file=0x7f020012;
     }
     public static final class id {
         public static final int action_settings=0x7f090008;
@@ -110,7 +112,16 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060003;
+        /**  the theme applied to the application or activity 
+         */
+        public static final int CustomActionBarTheme=0x7f060006;
         public static final int MediaController_SeekBar=0x7f060000;
         public static final int MediaController_Text=0x7f060001;
+        /**  ActionBar styles 
+         */
+        public static final int MyActionBar=0x7f060007;
+        public static final int MyActionBarTheme=0x7f060005;
+        public static final int MyCustomTheme=0x7f060004;
+        public static final int MyTheme_ActionBar_TitleTextStyle=0x7f060008;
     }
 }
