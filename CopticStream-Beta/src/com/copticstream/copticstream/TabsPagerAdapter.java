@@ -5,32 +5,27 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.List;
+
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
-	public TabsPagerAdapter(FragmentManager fm) {
+    List<Fragment> fragments;
+	public TabsPagerAdapter(FragmentManager fm , List<Fragment> fragments) {
 		super(fm);
-		// TODO Auto-generated constructor stub
+		this.fragments = fragments;
 	}
 
 	@Override
-	public Fragment getItem(int index) {
-		switch (index) {
-		case 0:
-			return new ListViewVideo();
-		case 1:
-			return new ListViewAudio();
-		case 2:
-			return new ListViewNews();
-		}
-		
-		return null;
+	public Fragment getItem(int position) {
+
+        return fragments.get(position);
 	}
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 3;
+
+		return fragments.size();
 	}
-	
-	
+
+
 }

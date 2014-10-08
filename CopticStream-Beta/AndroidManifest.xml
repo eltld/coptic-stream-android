@@ -36,7 +36,6 @@
         <activity android:name="MediaPlayerVideo" >
         </activity>
         <activity android:name="MediaPlayerAudio"></activity>
-        <activity android:name="ListViewVideo"></activity>
     </application>
 
 </manifest>

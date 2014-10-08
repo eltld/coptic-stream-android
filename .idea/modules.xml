@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CopticStream-Beta/CopticStream-Beta.iml" filepath="$PROJECT_DIR$/CopticStream-Beta/CopticStream-Beta.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VitamioBundle-4.2.0/vitamio/vitamio.iml" filepath="$PROJECT_DIR$/VitamioBundle-4.2.0/vitamio/vitamio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VitamioBundle-4.2.0/vitamio-sample/vitamio-sample.iml" filepath="$PROJECT_DIR$/VitamioBundle-4.2.0/vitamio-sample/vitamio-sample.iml" />
+    </modules>
+  </component>
+</project>
+
