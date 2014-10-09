@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.List;
 
@@ -17,11 +19,13 @@ public class StreamListBaseAdapter extends BaseAdapter {
     List<Stream> streams;
     Context context;
     LayoutInflater inflater;
+    ImageLoader imageLoader ;
     public StreamListBaseAdapter(Context context, List<Stream> streams) {
         super();
         this.streams = streams;
         this.context = context;
         this.inflater = inflater.from(this.context);
+        this.imageLoader = MySingleton.getInstance(this.context).getImageLoader();
     }
 
     @Override
@@ -42,43 +46,28 @@ public class StreamListBaseAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
 
-        ViewHolder viewHolder;
+        if (imageLoader == null)
+            imageLoader = MySingleton.getInstance(context).getImageLoader();
 
-        if(convertView == null){
+
             //What View should i be -this-> layout_list_item
             convertView = inflater.inflate(R.layout.layout_list_item,null);
-            //What items should i fill
-            viewHolder = new ViewHolder();
             convertView.setTag(viewGroup);
 
-
-        }else{
-            //if converted view reset your view from the view Holder to change their values
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
-
-        //fill view holder with value
 
         //fill The text view in the convert view which is layout_list_item now
         TextView textView = (TextView) convertView.findViewById(R.id.title);
         textView.setText(streams.get(position).getstreamName());
-        viewHolder.title = textView;
 
         TextView textView1 = (TextView) convertView.findViewById(R.id.description);
         textView1.setText(streams.get(position).getstreamDescription());
-        viewHolder.description = textView1;
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.icon);
-        imageView.setImageResource(R.drawable.cross);
-        viewHolder.imageView = imageView;
+
+        NetworkImageView thumbNail = (NetworkImageView) convertView
+                .findViewById(R.id.thumbnail);
+        thumbNail.setImageUrl(streams.get(position).getstreamImagethumbnail(),imageLoader);
+
 
         return convertView;
-    }
-
-
-    public class ViewHolder{
-        ImageView imageView;
-        TextView title, description;
-
     }
 }

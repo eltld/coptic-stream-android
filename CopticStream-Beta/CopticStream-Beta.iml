@@ -15,6 +15,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module" module-name="vitamio" />
+    <orderEntry type="library" name="gson-1.7" level="project" />
   </component>
 </module>
 

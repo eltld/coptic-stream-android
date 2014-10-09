@@ -14,6 +14,7 @@ import android.view.View;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +26,7 @@ import java.util.List;
 public class MainActivity extends FragmentActivity implements
         ActionBar.TabListener {
 
-    public final String TAG = "MainActivity";
+    public static final String TAG = "MainActivity";
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
@@ -41,10 +42,62 @@ public class MainActivity extends FragmentActivity implements
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
 
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
+                ("http://copticstream.com/streams.asmx/StreamListByType",new Response.Listener<JSONArray>() {
+
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+                        List<Stream> streamListVideo = new ArrayList<Stream>();
+                        List<Stream> streamListAudio = new ArrayList<Stream>();
+
+
+                        List<Fragment> fragments = new ArrayList<Fragment>();
+
+                        for(int i = 0; i < response.length() ; i ++){
+                            try {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                Gson gson = new Gson();
+                                Stream stream = gson.fromJson(String.valueOf(jsonObject), Stream.class);
+
+                                if(stream.getstreamTypeID() == 1){
+                                    streamListVideo.add(stream);
+                                }else{
+                                    streamListAudio.add(stream);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        fragments.add(new ListViewVideo("streamListVideo",streamListVideo));
+                        fragments.add(new ListViewAudio());
+
+                        mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), fragments);
+
+                        viewPager.setAdapter(mAdapter);
 
 
 
 
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+
+                    }
+                });
+
+        MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
+
+
+
+        //This will make the Action bar and the Tabs never overlap when set to false
+        new setHasEmbeddedTabs(actionBar, false);
 
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -55,8 +108,7 @@ public class MainActivity extends FragmentActivity implements
             actionBar.addTab(actionBar.newTab().setIcon(R.drawable.video_file).setTabListener(this));
         }
 
-        //This will make the Action bar and the Tabs never overlap when set to false
-        new setHasEmbeddedTabs(actionBar, false);
+
 
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() { // when
@@ -87,59 +139,9 @@ public class MainActivity extends FragmentActivity implements
         });
 
 
-        //Fill The ListView Of the video fragmant
-
-
-        String url = "http://copticstream.com/streams.asmx/StreamListByType";
-        JsonArrayRequest jsonArrayRequestRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-
-            @Override
-            public void onResponse(JSONArray response) {
-                Log.i(TAG, response.toString());
-
-
-                try {
-                    DeserializerStreamListFromJson(response);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-                List<Fragment> fragments = new ArrayList<Fragment>();
-
-                fragments.add(new ListViewVideo());
-                fragments.add(new ListViewAudio());
-
-                mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), fragments);
-
-                viewPager.setAdapter(mAdapter);
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
-
-            }
-        });
-
-        MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequestRequest);
 
     }
 
-    public static List<Stream> DeserializerStreamListFromJson(JSONArray jsonArrayStream) throws JSONException {
-        List<Stream> streams = new ArrayList<Stream>();
-
-        for(int i = 0; i < jsonArrayStream.length(); i++){
-            Stream stream = new Stream();
-            JSONObject current = (JSONObject) jsonArrayStream.get(i);
-          Log.i("Main",  current.getString("streamName"));
-
-        }
-
-        return streams;
-    }
 
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) {// When tab
