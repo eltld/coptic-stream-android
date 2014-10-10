@@ -33,6 +33,14 @@
         android:layout_toRightOf="@+id/thumbnail"
         android:textSize="@dimen/rating" />
 
+    <!--Hidden Field for the stream URL -->
+
+    <TextView
+        android:id="@+id/streamURL"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"/>
+
     <!--&lt;!&ndash; Genre &ndash;&gt;-->
     <!--<TextView-->
         <!--android:id="@+id/genre"-->

@@ -1,6 +1,7 @@
 package com.copticstream.copticstream;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -36,7 +37,11 @@ public class ListViewVideo extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView textView = (TextView) view.findViewById(R.id.title);
+                TextView textView = (TextView) view.findViewById(R.id.streamURL);
+
+                Intent intent = new Intent(getActivity(), MediaPlayerVideo.class);
+                intent.putExtra("streamURL", "rtsp://wow1.streamcyclone.com:1935/rakotyaudio_live/rakotyaudio");
+                startActivity(intent);
 
                 Log.i(TAG, (String) textView.getText());
 
