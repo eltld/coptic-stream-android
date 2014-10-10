@@ -19,7 +19,8 @@ public class StreamListBaseAdapter extends BaseAdapter {
     List<Stream> streams;
     Context context;
     LayoutInflater inflater;
-    ImageLoader imageLoader ;
+    ImageLoader imageLoader;
+
     public StreamListBaseAdapter(Context context, List<Stream> streams) {
         super();
         this.streams = streams;
@@ -50,9 +51,9 @@ public class StreamListBaseAdapter extends BaseAdapter {
             imageLoader = MySingleton.getInstance(context).getImageLoader();
 
 
-            //What View should i be -this-> layout_list_item
-            convertView = inflater.inflate(R.layout.layout_list_item,null);
-            convertView.setTag(viewGroup);
+        //What View should i be -this-> layout_list_item
+        convertView = inflater.inflate(R.layout.layout_list_item, null);
+        convertView.setTag(viewGroup);
 
 
         //fill The text view in the convert view which is layout_list_item now
@@ -65,7 +66,7 @@ public class StreamListBaseAdapter extends BaseAdapter {
 
         NetworkImageView thumbNail = (NetworkImageView) convertView
                 .findViewById(R.id.thumbnail);
-        thumbNail.setImageUrl(streams.get(position).getstreamImagethumbnail(),imageLoader);
+        thumbNail.setImageUrl(streams.get(position).getstreamImagethumbnail(), imageLoader);
 
 
         return convertView;

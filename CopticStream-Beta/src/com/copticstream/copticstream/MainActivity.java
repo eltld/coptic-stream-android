@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -43,7 +44,7 @@ public class MainActivity extends FragmentActivity implements
         actionBar = getActionBar();
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
-                ("http://copticstream.com/streams.asmx/StreamListByType",new Response.Listener<JSONArray>() {
+                ("http://copticstream.com/streams.asmx/StreamListByType", new Response.Listener<JSONArray>() {
 
                     @Override
                     public void onResponse(JSONArray response) {
@@ -54,15 +55,15 @@ public class MainActivity extends FragmentActivity implements
 
                         List<Fragment> fragments = new ArrayList<Fragment>();
 
-                        for(int i = 0; i < response.length() ; i ++){
+                        for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 Gson gson = new Gson();
                                 Stream stream = gson.fromJson(String.valueOf(jsonObject), Stream.class);
 
-                                if(stream.getstreamTypeID() == 1){
+                                if (stream.getstreamTypeID() == 1) {
                                     streamListVideo.add(stream);
-                                }else{
+                                } else {
                                     streamListAudio.add(stream);
                                 }
 
@@ -72,14 +73,12 @@ public class MainActivity extends FragmentActivity implements
 
                         }
 
-                        fragments.add(new ListViewVideo("streamListVideo",streamListVideo));
+                        fragments.add(new ListViewVideo("streamListVideo", streamListVideo));
                         fragments.add(new ListViewAudio());
 
                         mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), fragments);
 
                         viewPager.setAdapter(mAdapter);
-
-
 
 
                     }
@@ -95,7 +94,6 @@ public class MainActivity extends FragmentActivity implements
         MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
 
 
-
         //This will make the Action bar and the Tabs never overlap when set to false
         new setHasEmbeddedTabs(actionBar, false);
 
@@ -107,8 +105,6 @@ public class MainActivity extends FragmentActivity implements
         for (String tab_name : tabs) {
             actionBar.addTab(actionBar.newTab().setIcon(R.drawable.video_file).setTabListener(this));
         }
-
-
 
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() { // when
@@ -139,7 +135,22 @@ public class MainActivity extends FragmentActivity implements
         });
 
 
+    }
 
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        //This will make the Action bar and the Tabs never overlap when set to false
+        new setHasEmbeddedTabs(actionBar, false);
+
+//        // Checks the orientation of the screen
+//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+//        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+//            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+//        }
     }
 
 

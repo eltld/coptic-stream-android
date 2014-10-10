@@ -22,8 +22,9 @@
 
     <!-- ActionBar Tab Style-->
     <style name="MyActionBarTabs" parent="@android:style/Theme.Holo.Light">
-        <item name="android:background">#FFFFFF</item>
+
         <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/tab_background_select</item>
     </style>
 
 </resources>
