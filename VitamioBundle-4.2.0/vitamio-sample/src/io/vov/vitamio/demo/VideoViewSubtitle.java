@@ -30,7 +30,7 @@ import io.vov.vitamio.widget.VideoView;
 
 public class VideoViewSubtitle extends Activity {
 
-	private String path = "";
+	private String path = "rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/aljazeera_eng_high";
 	private String subtitle_path = "";
 	private VideoView mVideoView;
 	private TextView mSubtitleView;

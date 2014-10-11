@@ -26,7 +26,7 @@ public class StreamListBaseAdapter extends BaseAdapter {
         this.streams = streams;
         this.context = context;
         this.inflater = inflater.from(this.context);
-        this.imageLoader = MySingleton.getInstance(this.context).getImageLoader();
+        this.imageLoader = VolleySingleton.getInstance(this.context).getImageLoader();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class StreamListBaseAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup viewGroup) {
 
         if (imageLoader == null)
-            imageLoader = MySingleton.getInstance(context).getImageLoader();
+            imageLoader = VolleySingleton.getInstance(context).getImageLoader();
 
 
         //What View should i be -this-> layout_list_item

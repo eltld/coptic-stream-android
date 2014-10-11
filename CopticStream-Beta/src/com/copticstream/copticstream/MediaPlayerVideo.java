@@ -1,11 +1,5 @@
 package com.copticstream.copticstream;
 
-import io.vov.vitamio.LibsChecker;
-import io.vov.vitamio.MediaPlayer;
-import io.vov.vitamio.MediaPlayer.OnBufferingUpdateListener;
-import io.vov.vitamio.MediaPlayer.OnCompletionListener;
-import io.vov.vitamio.MediaPlayer.OnPreparedListener;
-import io.vov.vitamio.MediaPlayer.OnVideoSizeChangedListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -15,6 +9,13 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Toast;
+
+import io.vov.vitamio.LibsChecker;
+import io.vov.vitamio.MediaPlayer;
+import io.vov.vitamio.MediaPlayer.OnBufferingUpdateListener;
+import io.vov.vitamio.MediaPlayer.OnCompletionListener;
+import io.vov.vitamio.MediaPlayer.OnPreparedListener;
+import io.vov.vitamio.MediaPlayer.OnVideoSizeChangedListener;
 
 public class MediaPlayerVideo extends Activity implements OnBufferingUpdateListener, OnCompletionListener, OnPreparedListener, OnVideoSizeChangedListener, SurfaceHolder.Callback {
 
@@ -79,10 +80,10 @@ public class MediaPlayerVideo extends Activity implements OnBufferingUpdateListe
 				 * contents" which basically means: 1. the movie atom has to
 				 * precede all the media data atoms. 2. The clip has to be
 				 * reasonably interleaved.
-				 * 
+				 *
 				 */
-				 
-								
+
+
 				path = intent.getStringExtra("streamURL");
 				if (path == "") {
 					// Tell the user to provide a media file URL.
@@ -103,7 +104,7 @@ public class MediaPlayerVideo extends Activity implements OnBufferingUpdateListe
 			mMediaPlayer.setOnCompletionListener(this);
 			mMediaPlayer.setOnPreparedListener(this);
 			mMediaPlayer.setOnVideoSizeChangedListener(this);
-			mMediaPlayer.getMetadata();
+			//mMediaPlayer.getMetadata();
 			setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 		} catch (Exception e) {

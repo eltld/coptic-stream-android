@@ -55,7 +55,7 @@ public class VideoBuffer extends Activity implements OnInfoListener, OnBuffering
 
 		downloadRateView = (TextView) findViewById(R.id.download_rate);
 		loadRateView = (TextView) findViewById(R.id.load_rate);
-		if (path == "") {
+		if (path == "rtsp://sc-e1.streamcyclone.com:1935/rakoty_live/rakoty") {
 			// Tell the user to provide a media file URL/path.
 			Toast.makeText(VideoBuffer.this, "Please edit VideoBuffer Activity, and set path" + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
 			return;

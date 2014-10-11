@@ -16,6 +16,16 @@
 
 package io.vov.vitamio.demo;
 
+import android.app.Activity;
+import android.graphics.PixelFormat;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback;
+import android.view.SurfaceView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.IOException;
 
 import io.vov.vitamio.LibsChecker;
@@ -23,23 +33,13 @@ import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.MediaPlayer.OnPreparedListener;
 import io.vov.vitamio.MediaPlayer.OnTimedTextListener;
 
-import android.os.Bundle;
-import android.os.Environment;
-import android.app.Activity;
-import android.graphics.PixelFormat;
-import android.view.SurfaceHolder;
-import android.view.SurfaceHolder.Callback;
-import android.view.SurfaceView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 public class MediaPlayerSubtitle extends Activity implements Callback, OnPreparedListener, OnTimedTextListener {
 
 	SurfaceView splayer;
 	SurfaceHolder sholder;
 	TextView tv;
 	private MediaPlayer mediaPlayer;
-	private String path = "";
+	private String path = "rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/aljazeera_eng_high";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

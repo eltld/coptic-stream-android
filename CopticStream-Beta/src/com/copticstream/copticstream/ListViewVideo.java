@@ -40,7 +40,7 @@ public class ListViewVideo extends Fragment {
                 TextView textView = (TextView) view.findViewById(R.id.streamURL);
 
                 Intent intent = new Intent(getActivity(), MediaPlayerVideo.class);
-                intent.putExtra("streamURL", "rtsp://wow1.streamcyclone.com:1935/rakotyaudio_live/rakotyaudio");
+                intent.putExtra("streamURL", textView.getText());
                 startActivity(intent);
 
                 Log.i(TAG, (String) textView.getText());

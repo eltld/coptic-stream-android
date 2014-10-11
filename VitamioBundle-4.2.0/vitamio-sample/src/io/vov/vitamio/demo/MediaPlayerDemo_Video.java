@@ -95,7 +95,7 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 				 * reasonably interleaved.
 				 * 
 				 */
-				path = "rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/aljazeera_eng_high";
+				path = "rtsp://sc-e1.streamcyclone.com:1935/rakoty_live/rakoty";
 				if (path == "") {
 					// Tell the user to provide a media file URL.
 					Toast.makeText(MediaPlayerDemo_Video.this, "Please edit MediaPlayerDemo_Video Activity," + " and set the path variable to your media file URL.", Toast.LENGTH_LONG).show();
@@ -115,7 +115,7 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 			mMediaPlayer.setOnCompletionListener(this);
 			mMediaPlayer.setOnPreparedListener(this);
 			mMediaPlayer.setOnVideoSizeChangedListener(this);
-			mMediaPlayer.getMetadata();
+			//mMediaPlayer.getMetadata();
 			setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 		} catch (Exception e) {

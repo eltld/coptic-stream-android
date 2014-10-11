@@ -3,14 +3,11 @@ package com.copticstream.copticstream;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.View;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -91,7 +88,7 @@ public class MainActivity extends FragmentActivity implements
                     }
                 });
 
-        MySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
 
 
         //This will make the Action bar and the Tabs never overlap when set to false
@@ -178,14 +175,6 @@ public class MainActivity extends FragmentActivity implements
     }
 
 
-    public void viewVideo(View view) {
-
-        Intent intent = new Intent(this, MediaPlayerVideo.class);
-        intent.putExtra("streamURL", "rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/aljazeera_eng_high");
-        startActivity(intent);
-
-        Log.i(TAG, "Clicked");
-    }
 
 
 }
