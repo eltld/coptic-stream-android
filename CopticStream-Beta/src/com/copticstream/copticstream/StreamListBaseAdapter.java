@@ -68,8 +68,11 @@ public class StreamListBaseAdapter extends BaseAdapter {
                 .findViewById(R.id.thumbnail);
         thumbNail.setImageUrl(streams.get(position).getstreamImagethumbnail(), imageLoader);
 
-        TextView textView2 = (TextView) convertView.findViewById(R.id.streamURL);
-        textView2.setText(streams.get(position).getstreamURL());
+        TextView streamURL = (TextView) convertView.findViewById(R.id.streamURL);
+        streamURL.setText(streams.get(position).getstreamURL());
+
+        TextView streamTypeID = (TextView) convertView.findViewById(R.id.streamTypeID);
+        streamTypeID.setText(streams.get(position).getstreamTypeID().toString());
 
 
         return convertView;

@@ -41,6 +41,13 @@
         android:layout_height="fill_parent"
         android:visibility="gone"/>
 
+    <!-- Hidden Field For Stream type -->
+    <TextView
+        android:id="@+id/streamTypeID"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"/>
+
     <!--&lt;!&ndash; Genre &ndash;&gt;-->
     <!--<TextView-->
         <!--android:id="@+id/genre"-->

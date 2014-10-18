@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ListViewVideo extends Fragment {
 
@@ -39,9 +41,37 @@ public class ListViewVideo extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView textView = (TextView) view.findViewById(R.id.streamURL);
 
-                Intent intent = new Intent(getActivity(), MediaPlayerVideo.class);
-                intent.putExtra("streamURL", textView.getText());
-                startActivity(intent);
+                //Get the stream Type ID
+
+                TextView streamTypeID = (TextView) view.findViewById(R.id.streamTypeID);
+                int typeID  = Integer.parseInt((String) streamTypeID.getText());
+
+
+                //RTSP
+                if(typeID == 1){
+                    Intent intent = new Intent(getActivity(), RTSPMediaPlayer.class);
+                    intent.putExtra("streamURL", textView.getText());
+                    startActivity(intent);
+                    return;
+                }
+
+                //RTMP
+                if(typeID == 2){
+                    Intent intent = new Intent(getActivity(), MediaPlayerVideo.class);
+                    intent.putExtra("streamURL", textView.getText());
+                    startActivity(intent);
+                    return;
+                }
+
+                //YouTube
+                if(typeID == 3){
+                    Intent intent = new Intent(getActivity(), YouTubeMediaPlayer.class);
+                    String streamURL = (String) textView.getText();
+                    String YTID = extractYTId(streamURL);
+                    intent.putExtra("YTID", YTID);
+                    startActivity(intent);
+                    return;
+                }
 
                 Log.i(TAG, (String) textView.getText());
 
@@ -51,4 +81,14 @@ public class ListViewVideo extends Fragment {
         return view;
 
     }
+    public static String extractYTId(String ytUrl) {
+        String vId = null;
+        Pattern pattern = Pattern.compile(".*(?:youtu.be\\/|v\\/|u\\/\\w\\/|embed\\/|watch\\?v=)([^#\\&\\?]*).*");
+        Matcher matcher = pattern.matcher(ytUrl);
+        if (matcher.matches()){
+            vId = matcher.group(1);
+        }
+        return vId;
+    }
+
 }

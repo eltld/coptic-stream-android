@@ -60,30 +60,6 @@ public class MediaPlayerVideo extends Activity implements OnBufferingUpdateListe
 		doCleanUp();
 		try {
 
-			switch (Media) {
-			case LOCAL_VIDEO:
-				/*
-				 * TODO: Set the path variable to a local media file path.
-				 */
-				path = "";
-				if (path == "") {
-					// Tell the user to provide a media file URL.
-					Toast.makeText(MediaPlayerVideo.this, "Please edit MediaPlayerDemo_Video Activity, " + "and set the path variable to your media file path." + " Your media file must be stored on sdcard.", Toast.LENGTH_LONG).show();
-					return;
-				}
-				break;
-			case STREAM_VIDEO:
-				/*
-				 * TODO: Set path variable to progressive streamable mp4 or
-				 * 3gpp format URL. Http protocol should be used.
-				 * Mediaplayer can only play "progressive streamable
-				 * contents" which basically means: 1. the movie atom has to
-				 * precede all the media data atoms. 2. The clip has to be
-				 * reasonably interleaved.
-				 *
-				 */
-
-
 				path = intent.getStringExtra("streamURL");
 				if (path == "") {
 					// Tell the user to provide a media file URL.
@@ -91,21 +67,18 @@ public class MediaPlayerVideo extends Activity implements OnBufferingUpdateListe
 					return;
 				}
 
-				break;
 
-			}
-
-			// Create a new media player and set the listeners
-			mMediaPlayer = new MediaPlayer(this);
-			mMediaPlayer.setDataSource(path);
-			mMediaPlayer.setDisplay(holder);
-			mMediaPlayer.prepare();
-			mMediaPlayer.setOnBufferingUpdateListener(this);
-			mMediaPlayer.setOnCompletionListener(this);
-			mMediaPlayer.setOnPreparedListener(this);
-			mMediaPlayer.setOnVideoSizeChangedListener(this);
-			//mMediaPlayer.getMetadata();
-			setVolumeControlStream(AudioManager.STREAM_MUSIC);
+            // Create a new media player and set the listeners
+            mMediaPlayer = new MediaPlayer(this);
+            mMediaPlayer.setDataSource(path);
+            mMediaPlayer.setDisplay(holder);
+            mMediaPlayer.prepare();
+            mMediaPlayer.setOnBufferingUpdateListener(this);
+            mMediaPlayer.setOnCompletionListener(this);
+            mMediaPlayer.setOnPreparedListener(this);
+            mMediaPlayer.setOnVideoSizeChangedListener(this);
+          //  mMediaPlayer.getMetadata();
+            setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 		} catch (Exception e) {
 			Log.e(TAG, "error: " + e.getMessage(), e);

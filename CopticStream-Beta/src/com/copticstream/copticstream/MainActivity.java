@@ -47,7 +47,7 @@ public class MainActivity extends FragmentActivity implements
                     public void onResponse(JSONArray response) {
 
                         List<Stream> streamListVideo = new ArrayList<Stream>();
-                        List<Stream> streamListAudio = new ArrayList<Stream>();
+//                        List<Stream> streamListAudio = new ArrayList<Stream>();
 
 
                         List<Fragment> fragments = new ArrayList<Fragment>();
@@ -58,11 +58,7 @@ public class MainActivity extends FragmentActivity implements
                                 Gson gson = new Gson();
                                 Stream stream = gson.fromJson(String.valueOf(jsonObject), Stream.class);
 
-                                if (stream.getstreamTypeID() == 1) {
                                     streamListVideo.add(stream);
-                                } else {
-                                    streamListAudio.add(stream);
-                                }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -71,10 +67,7 @@ public class MainActivity extends FragmentActivity implements
                         }
 
                         fragments.add(new ListViewVideo("streamListVideo", streamListVideo));
-                        fragments.add(new ListViewAudio());
-
                         mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), fragments);
-
                         viewPager.setAdapter(mAdapter);
 
 
@@ -91,17 +84,20 @@ public class MainActivity extends FragmentActivity implements
         VolleySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
 
 
+        /*
+        Action bar was disabled 10/17/2014
+         */
         //This will make the Action bar and the Tabs never overlap when set to false
-        new setHasEmbeddedTabs(actionBar, false);
-
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+//        new setHasEmbeddedTabs(actionBar, false);
+//
+//        actionBar.setHomeButtonEnabled(false);
+//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 
         // Adding Tabs
-        for (String tab_name : tabs) {
-            actionBar.addTab(actionBar.newTab().setIcon(R.drawable.video_file).setTabListener(this));
-        }
+//        for (String tab_name : tabs) {
+//            actionBar.addTab(actionBar.newTab().setIcon(R.drawable.video_file).setTabListener(this));
+//        }
 
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() { // when

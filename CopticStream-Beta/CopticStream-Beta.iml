@@ -16,6 +16,7 @@
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module" module-name="vitamio" />
     <orderEntry type="library" name="gson-1.7" level="project" />
+    <orderEntry type="library" name="YouTubeAndroidPlayerApi" level="project" />
   </component>
 </module>
 

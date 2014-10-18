@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.copticstream.copticstream"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,11 +17,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/CustomActionBarTheme" >
+        android:theme="@style/CustomActionBarTheme">
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,9 +34,18 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name="MediaPlayerVideo" >
-        </activity>
-        <activity android:name="MediaPlayerAudio"></activity>
+        <activity
+            android:name=".MediaPlayerVideo"
+            android:configChanges="orientation|screenSize"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity
+            android:name=".RTSPMediaPlayer"
+            android:configChanges="orientation|screenSize"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity
+            android:name=".YouTubeMediaPlayer"
+            android:configChanges="orientation|screenSize"
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
     </application>
 
 </manifest>
