@@ -56,7 +56,7 @@ public class ListViewVideo extends Fragment  {
                 int ID  = Integer.parseInt((String) streamID.getText());
 
                 new StreamViews(getActivity()).IncrementStreamViews(ID);
-                
+
 
 
                 //RTSP
