@@ -25,8 +25,9 @@ public class YouTubeMediaPlayer extends YouTubeBaseActivity implements YouTubePl
         intent = getIntent();
         YTID = intent.getStringExtra("YTID").toString();
 
+
         YouTubePlayerView youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtube_player);
-        youTubePlayerView.initialize(API_KEY, this);
+        youTubePlayerView.initialize(API_KEY,this);
 
     }
 
@@ -34,7 +35,8 @@ public class YouTubeMediaPlayer extends YouTubeBaseActivity implements YouTubePl
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
         /** Start buffering **/
         if (!wasRestored) {
-            player.cueVideo(YTID);
+            player.loadVideo(YTID);
+            player.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);
         }
     }
 

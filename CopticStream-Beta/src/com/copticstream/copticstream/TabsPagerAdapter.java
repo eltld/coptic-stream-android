@@ -10,22 +10,22 @@ import java.util.List;
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     List<Fragment> fragments;
-	public TabsPagerAdapter(FragmentManager fm , List<Fragment> fragments) {
-		super(fm);
-		this.fragments = fragments;
-	}
+    public TabsPagerAdapter(FragmentManager fm , List<Fragment> fragments) {
+        super(fm);
+        this.fragments = fragments;
+    }
 
-	@Override
-	public Fragment getItem(int position) {
+    @Override
+    public Fragment getItem(int position) {
 
         return fragments.get(position);
-	}
+    }
 
-	@Override
-	public int getCount() {
+    @Override
+    public int getCount() {
 
-		return fragments.size();
-	}
+        return fragments.size();
+    }
 
 
 }

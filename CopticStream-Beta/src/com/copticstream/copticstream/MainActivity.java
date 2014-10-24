@@ -1,8 +1,7 @@
 package com.copticstream.copticstream;
 
 import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,13 +20,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity implements
-        ActionBar.TabListener {
+public class MainActivity extends FragmentActivity implements Constant {
 
     public static final String TAG = "MainActivity";
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
+    private ProgressDialog dialog;
 
     // Tab titles
     private String[] tabs = {"Video Stream", "Audio Stream"};
@@ -39,6 +38,11 @@ public class MainActivity extends FragmentActivity implements
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
+        dialog = new ProgressDialog(this);
+        dialog.setMessage(LOADING_MESSAGE);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
                 ("http://copticstream.com/streams.asmx/StreamListByType", new Response.Listener<JSONArray>() {
@@ -47,7 +51,6 @@ public class MainActivity extends FragmentActivity implements
                     public void onResponse(JSONArray response) {
 
                         List<Stream> streamListVideo = new ArrayList<Stream>();
-//                        List<Stream> streamListAudio = new ArrayList<Stream>();
 
 
                         List<Fragment> fragments = new ArrayList<Fragment>();
@@ -69,6 +72,7 @@ public class MainActivity extends FragmentActivity implements
                         fragments.add(new ListViewVideo("streamListVideo", streamListVideo));
                         mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), fragments);
                         viewPager.setAdapter(mAdapter);
+                        dialog.hide();
 
 
                     }
@@ -84,48 +88,6 @@ public class MainActivity extends FragmentActivity implements
         VolleySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
 
 
-        /*
-        Action bar was disabled 10/17/2014
-         */
-        //This will make the Action bar and the Tabs never overlap when set to false
-//        new setHasEmbeddedTabs(actionBar, false);
-//
-//        actionBar.setHomeButtonEnabled(false);
-//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-
-        // Adding Tabs
-//        for (String tab_name : tabs) {
-//            actionBar.addTab(actionBar.newTab().setIcon(R.drawable.video_file).setTabListener(this));
-//        }
-
-
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() { // when
-            // the
-            // page
-            // start
-            // scrolling
-            @Override
-            public void onPageSelected(int position) {// When Scroll Completed
-                // TODO Auto-generated method stub
-                actionBar.setSelectedNavigationItem(position);
-                actionBar.setTitle(tabs[position]);
-            }
-
-            @Override
-            public void onPageScrolled(int position, float arg1,
-                                       int arg2) { // When the page completely Changed
-                // "Changed Complete"
-
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int position) {
-                // TODO Auto-generated method stub
-
-            }
-        });
 
 
     }
@@ -137,37 +99,6 @@ public class MainActivity extends FragmentActivity implements
 
         //This will make the Action bar and the Tabs never overlap when set to false
         new setHasEmbeddedTabs(actionBar, false);
-
-//        // Checks the orientation of the screen
-//        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
-//        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-//            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
-//        }
-    }
-
-
-    @Override
-    public void onTabSelected(Tab tab, FragmentTransaction ft) {// When tab
-        // clicked also
-        // get called on
-        // pages load
-        // TODO Auto-generated method stub
-        viewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(Tab tab, FragmentTransaction ft) {// When a Tab
-        // is
-        // unselected
-        // TODO Auto-generated method stub
-        // Use tab.getposition
-    }
-
-    @Override
-    public void onTabReselected(Tab tab, FragmentTransaction ft) {
-        // TODO Auto-generated method stub
-
     }
 
 

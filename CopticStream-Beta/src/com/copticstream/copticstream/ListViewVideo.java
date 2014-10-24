@@ -1,6 +1,7 @@
 package com.copticstream.copticstream;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,11 +17,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ListViewVideo extends Fragment {
+public class ListViewVideo extends Fragment  {
 
     private final String TAG = "ListViewVideo";
     private String target;
     private List<Stream> streamList;
+    private ProgressDialog dialog;
 
     public ListViewVideo(String target, List<Stream> streamList) {
         this.target = target;
@@ -39,6 +41,7 @@ public class ListViewVideo extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 TextView textView = (TextView) view.findViewById(R.id.streamURL);
 
                 //Get the stream Type ID
@@ -47,12 +50,13 @@ public class ListViewVideo extends Fragment {
                 int typeID  = Integer.parseInt((String) streamTypeID.getText());
 
 
+
                 //RTSP
                 if(typeID == 1){
                     Intent intent = new Intent(getActivity(), RTSPMediaPlayer.class);
                     intent.putExtra("streamURL", textView.getText());
                     startActivity(intent);
-                    return;
+                   return;
                 }
 
                 //RTMP

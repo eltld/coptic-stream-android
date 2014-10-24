@@ -15,7 +15,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/coptic_stream"
         android:label="@string/app_name"
         android:theme="@style/CustomActionBarTheme">
         <activity
@@ -36,14 +36,17 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".MediaPlayerVideo"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="orientation|screenSize"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity
             android:name=".RTSPMediaPlayer"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="orientation|screenSize"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity
             android:name=".YouTubeMediaPlayer"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="orientation|screenSize"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
     </application>

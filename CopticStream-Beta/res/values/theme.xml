@@ -9,7 +9,7 @@
 
     <!-- ActionBar styles -->
     <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">#1ABC9C</item>
+        <item name="android:background">#34495e</item>
         <!-- back ground color white -->
         <item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>
         <item name="android:height">50dip</item>

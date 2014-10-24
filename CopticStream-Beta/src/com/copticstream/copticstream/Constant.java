@@ -6,5 +6,6 @@ package com.copticstream.copticstream;
 public interface Constant {
 
     String API_KEY = "AIzaSyA0N9cE9rU4tM1qXy9_GMCSvwr8Nt26n6E";
+    String LOADING_MESSAGE = "LOADING IN PROGRESS... " ;
 
 }
