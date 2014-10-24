@@ -50,6 +50,14 @@ public class ListViewVideo extends Fragment  {
                 int typeID  = Integer.parseInt((String) streamTypeID.getText());
 
 
+                //Increment the Stream view
+
+                TextView streamID = (TextView) view.findViewById(R.id.streamID);
+                int ID  = Integer.parseInt((String) streamID.getText());
+
+                new StreamViews(getActivity()).IncrementStreamViews(ID);
+                
+
 
                 //RTSP
                 if(typeID == 1){

@@ -50,4 +50,11 @@
         android:visibility="gone"/>
 
 
+    <!-- Hidden Field For Stream ID -->
+    <TextView
+        android:id="@+id/streamID"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"/>
+
 </RelativeLayout>

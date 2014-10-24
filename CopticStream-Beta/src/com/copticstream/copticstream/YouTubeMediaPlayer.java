@@ -2,6 +2,7 @@ package com.copticstream.copticstream;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -21,6 +22,7 @@ public class YouTubeMediaPlayer extends YouTubeBaseActivity implements YouTubePl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.youtube_videoplayer);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         intent = getIntent();
         YTID = intent.getStringExtra("YTID").toString();

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import io.vov.vitamio.LibsChecker;
@@ -53,6 +54,7 @@ public class MediaPlayerVideo extends Activity implements OnBufferingUpdateListe
 		holder.addCallback(this);
 		holder.setFormat(PixelFormat.RGBA_8888); 
 		extras = getIntent().getExtras();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 	}
 

@@ -74,6 +74,9 @@ public class StreamListBaseAdapter extends BaseAdapter {
         TextView streamTypeID = (TextView) convertView.findViewById(R.id.streamTypeID);
         streamTypeID.setText(streams.get(position).getstreamTypeID().toString());
 
+        TextView streamID = (TextView) convertView.findViewById(R.id.streamID);
+        streamID.setText(String.valueOf(streams.get(position).getstreamID()));
+
 
         return convertView;
     }

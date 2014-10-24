@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.google.gson.Gson;
 
@@ -44,8 +47,9 @@ public class MainActivity extends FragmentActivity implements Constant {
         dialog.show();
 
 
+        Log.i(TAG, android.os.Build.SERIAL);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
-                ("http://copticstream.com/streams.asmx/StreamListByType", new Response.Listener<JSONArray>() {
+                ("http://copticstream.com/streams.asmx/StreamList", new Response.Listener<JSONArray>() {
 
                     @Override
                     public void onResponse(JSONArray response) {
@@ -80,7 +84,7 @@ public class MainActivity extends FragmentActivity implements Constant {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        VolleyLog.e("Error: ", error.getMessage());
 
                     }
                 });
@@ -88,6 +92,9 @@ public class MainActivity extends FragmentActivity implements Constant {
         VolleySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
 
 
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 
     }

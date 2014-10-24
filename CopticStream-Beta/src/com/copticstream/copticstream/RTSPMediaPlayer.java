@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -15,7 +16,7 @@ public class RTSPMediaPlayer extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rtsp_videoplayer);
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         VideoView videoView = (VideoView) findViewById(R.id.RTSPplayer);
         MediaController mediaController = new MediaController(this);
