@@ -8,6 +8,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
@@ -77,6 +83,22 @@ public class MainActivity extends FragmentActivity implements Constant {
                         mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), fragments);
                         viewPager.setAdapter(mAdapter);
                         dialog.hide();
+
+
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.custom_toast,
+                                (ViewGroup) findViewById(R.id.custom_toast_layout));
+
+                        TextView text = (TextView) layout.findViewById(R.id.textToShow);
+                        // Set the Text to show in TextView
+                        text.setText("Register your church Live stream  - قم بتسجيل البث المباشر لكنيستك http://copticstream.com");
+
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.BOTTOM,0,170);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
+
 
 
                     }
