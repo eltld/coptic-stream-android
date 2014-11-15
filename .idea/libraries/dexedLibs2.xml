@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CopticStream-Beta/bin/dexedLibs/android-support-v4-4f1f0a02fcecb801dbd9b9e8c2ac9b58.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CopticStream-Beta/bin/dexedLibs/volley-0a520002ad5254d1b1e90e3055037213.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CopticStream-Beta/bin/dexedLibs/vitamio-7e413882b7fe0f2fab04991db9c8474b.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

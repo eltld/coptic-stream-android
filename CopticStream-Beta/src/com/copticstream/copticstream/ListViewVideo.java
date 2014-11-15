@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class ListViewVideo extends Fragment  {
 
     private final String TAG = "ListViewVideo";
     private String target;
+    public static StreamListBaseAdapter adapter;
     private List<Stream> streamList;
     private ProgressDialog dialog;
 
@@ -36,8 +38,9 @@ public class ListViewVideo extends Fragment  {
         View view = inflater.inflate(R.layout.listview_video, container, false);
         ListView listView = (ListView) view.findViewById(R.id.videoList);
 
+        adapter = new StreamListBaseAdapter(getActivity(), streamList);
 
-        listView.setAdapter(new StreamListBaseAdapter(getActivity(), streamList));
+        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
