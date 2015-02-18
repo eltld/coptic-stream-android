@@ -2,7 +2,9 @@
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android" name="Android">
-      <configuration />
+      <configuration>
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="" />
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
@@ -11,12 +13,10 @@
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="libs" level="project" />
+    <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module" module-name="vitamio" />
-    <orderEntry type="library" name="gson-1.7" level="project" />
-    <orderEntry type="library" name="YouTubeAndroidPlayerApi" level="project" />
   </component>
 </module>
 
